@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1A What do you do?</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Sans 3', Arial, sans-serif;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #f0efed;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 36px 40px 60px;
+  background: #fff;
+  box-shadow: 0 2px 32px rgba(0,0,0,0.12);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.badge-row { margin-bottom: 4px; }
+.badge-yellow {
+  background: #f5c800;
+  color: #1a1a1a;
+  font-weight: 900;
+  font-size: 13px;
+  padding: 3px 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.lesson-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #1a1a1a;
+  line-height: 1.0;
+  letter-spacing: -0.5px;
+  margin: 6px 0 18px;
+}
+.objectives-box {
+  border: 2px solid #f5c800;
+  padding: 12px 18px;
+  background: #fffdf0;
+  display: inline-block;
+  margin-bottom: 28px;
+}
+.obj-title {
+  font-weight: 700;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 7px;
+}
+.objectives-box ul { list-style: disc; padding-left: 18px; }
+.objectives-box li { font-size: 13px; margin-bottom: 2px; }
+
+/* ── SECTION HEADER ── */
+.section-header {
+  font-weight: 900;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-bottom: 3px solid #1a1a1a;
+  padding-bottom: 5px;
+  margin: 30px 0 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.section-header .sub {
+  color: #b87a00;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 15px;
+}
+
+/* ── EXERCISE ── */
+.exercise { margin-bottom: 22px; }
+
+.ex-instruction {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.ex-num-badge {
+  background: #1a1a1a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11.5px;
+  min-width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.ex-text {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* ── AUDIO ICON ── */
+.audio-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  color: #f5c800;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 8px;
+  margin-right: 4px;
+  vertical-align: middle;
+  flex-shrink: 0;
+  padding-left: 2px;
+  line-height: 1;
+}
+
+/* ── TOGGLE ── */
+.toggle-wrap { margin-bottom: 10px; }
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 1.5px solid #ddb800;
+  color: #7a5c00;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.15s;
+  border-radius: 2px;
+  user-select: none;
+}
+.toggle-btn:hover { background: #fffbe6; }
+.toggle-arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  font-size: 9px;
+  line-height: 1;
+}
+.toggle-btn.open .toggle-arrow { transform: rotate(90deg); }
+
+.toggle-content {
+  display: none;
+  background: #fffdf0;
+  border-left: 3px solid #f5c800;
+  padding: 11px 16px;
+  margin-top: 7px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #2a2a2a;
+}
+.toggle-content.visible { display: block; }
+.tc-label {
+  font-weight: 700;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9a6800;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+.tc-label:first-child { margin-top: 0; }
+.toggle-content p { margin-bottom: 0; }
+
+/* ── VOCAB BANK ── */
+.vocab-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 20px;
+  background: #f5f5f3;
+  border: 1px solid #ddd;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+/* ── FILL LIST ── */
+.fill-list { list-style: none; padding: 0; }
+.fill-list li {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 8px;
+  font-size: 13.5px;
+}
+.li-n { font-weight: 700; min-width: 18px; }
+
+/* ── INPUTS ── */
+.ans-input {
+  border: none;
+  border-bottom: 2px solid #bbb;
+  outline: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  padding: 1px 4px;
+  width: 155px;
+  background: transparent;
+  transition: border-color 0.15s, background 0.15s;
+}
+.ans-input:focus { border-bottom-color: #f5a800; }
+.ans-input.correct  { border-bottom-color: #2a9d2a; background: #f0fff0; color: #1a6e1a; }
+.ans-input.incorrect { border-bottom-color: #c83030; background: #fff0f0; color: #b82020; }
+
+/* ── SELECT ── */
+.inline-select {
+  border: none;
+  border-bottom: 2px solid #bbb;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+  outline: none;
+  padding: 1px 3px;
+  min-width: 40px;
+  transition: border-color 0.15s;
+}
+.inline-select:focus { border-bottom-color: #f5a800; }
+.inline-select.correct  { color: #1a6e1a; border-bottom-color: #2a9d2a; }
+.inline-select.incorrect { color: #b82020; border-bottom-color: #c83030; }
+
+/* ── MATCH ── */
+.match-q-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: 13.5px;
+}
+.match-q-item .qn { font-weight: 700; min-width: 18px; }
+.match-answers { margin-top: 10px; font-size: 13px; color: #333; }
+.match-a-item { margin-bottom: 5px; }
+.match-a-item .an { font-weight: 700; }
+
+/* ── DEV CONV BOX ── */
+.dev-box {
+  background: #f8f8f6;
+  border-left: 4px solid #f5c800;
+  padding: 12px 16px;
+  margin: 14px 0;
+  font-size: 13px;
+}
+.dev-box .dev-title {
+  font-weight: 900;
+  font-size: 14.5px;
+  color: #b87a00;
+  margin-bottom: 6px;
+}
+
+/* ── GRAMMAR BOX ── */
+.grammar-box {
+  border-left: 4px solid #f5c800;
+  background: #fffdf0;
+  padding: 14px 18px;
+  margin: 14px 0;
+}
+.grammar-box .g-title {
+  font-weight: 900;
+  font-size: 12.5px;
+  color: #9a6800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.grammar-box .g-sub {
+  font-weight: 700;
+  font-size: 13px;
+  margin: 10px 0 5px;
+}
+.grammar-box p {
+  font-size: 13px;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+.grammar-box p strong { font-style: normal; }
+.g-note { font-style: normal !important; margin-bottom: 8px !important; }
+
+/* ── EVB LIST ── */
+.evb-list { list-style: none; padding: 0; }
+.evb-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+  font-size: 13.5px;
+}
+
+/* ── RULE LIST ── */
+.rule-list { list-style: none; padding: 0; }
+.rule-list li {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: 13.5px;
+}
+
+/* ── PAIR ITEMS ── */
+.pair-block { margin-bottom: 14px; }
+.pair-verb { font-weight: 700; font-size: 13.5px; margin-bottom: 6px; }
+.pair-sentence {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 6px;
+  font-size: 13.5px;
+  padding-left: 14px;
+}
+.sub-l { font-weight: 700; color: #666; min-width: 16px; }
+
+/* ── DISC LIST ── */
+.disc-list { padding-left: 22px; }
+.disc-list li { margin-bottom: 6px; font-size: 13.5px; }
+.ex-sample {
+  font-style: italic;
+  color: #777;
+  font-size: 12.5px;
+  margin-top: 3px;
+}
+
+/* ── CHECK BTN ── */
+.check-btn {
+  margin-top: 12px;
+  background: #f5c800;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 11.5px;
+  padding: 7px 20px;
+  cursor: pointer;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  transition: background 0.15s;
+}
+.check-btn:hover { background: #ddb200; }
+.score-msg {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* ── GRAMMAR REF ── */
+.grammar-ref {
+  font-size: 12px;
+  color: #999;
+  border-left: 3px solid #ddd;
+  padding: 4px 10px;
+  margin-top: 12px;
+}
+
+/* ── SEPARATOR ── */
+.sep { height: 1px; background: #e8e8e6; margin: 28px 0; }
+
+/* ── FOOTER ── */
+.page-footer {
+  margin-top: 40px;
+  padding-top: 10px;
+  border-top: 1px solid #e0e0de;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: #bbb;
+}
+
+/* ── SUBMIT SECTION ── */
+.submit-section {
+  margin-top: 32px;
+  background: #1a1a1a;
+  padding: 24px 28px;
+  border-radius: 2px;
+}
+.submit-title {
+  font-weight: 900;
+  font-size: 16px;
+  color: #f5c800;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+.submit-desc {
+  font-size: 13px;
+  color: #ccc;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.submit-btn {
+  background: #f5c800;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 9px 24px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.15s;
+  border-radius: 1px;
+}
+.submit-btn:hover { background: #ddb200; }
+.summary-box {
+  margin-top: 18px;
+  background: #2e2e2e;
+  border: 1px solid #444;
+  border-radius: 2px;
+  padding: 16px 18px;
+  position: relative;
+}
+.summary-box pre {
+  font-family: 'Source Sans 3', Arial, sans-serif;
+  font-size: 13px;
+  color: #e8e8e8;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.copy-btn {
+  background: #f5c800;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 7px 20px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.15s;
+}
+.copy-btn:hover { background: #ddb200; }
+.copy-confirm {
+  display: none;
+  margin-left: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #4cdd4c;
+  vertical-align: middle;
+}
+
+/* ── SUBMIT SECTION ── */
+.submit-section {
+  margin-top: 40px;
+  border-top: 3px solid #1a1a1a;
+  padding-top: 24px;
+}
+.submit-title {
+  font-weight: 900;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+.submit-desc {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.submit-collect-btn {
+  background: #1a1a1a;
+  color: #f5c800;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 24px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.15s;
+}
+.submit-collect-btn:hover { background: #333; }
+.submit-output-wrap { margin-top: 16px; }
+.submit-textarea {
+  width: 100%;
+  min-height: 260px;
+  font-family: 'Source Sans 3', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 14px 16px;
+  border: 1.5px solid #ddd;
+  background: #fafaf8;
+  color: #1a1a1a;
+  resize: vertical;
+  outline: none;
+}
+.submit-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+.copy-btn {
+  background: #f5c800;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 12.5px;
+  padding: 8px 20px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.15s;
+}
+.copy-btn:hover { background: #ddb200; }
+.copy-btn.copied { background: #2a9d2a; color: #fff; }
+.copy-confirm {
+  font-size: 13px;
+  color: #2a9d2a;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="badge-row"><span class="badge-yellow">1A</span></div>
+  <div class="lesson-title">What do you do?</div>
+  <div class="objectives-box">
+    <div class="obj-title">In this lesson, you:</div>
+    <ul>
+      <li>talk about jobs</li>
+      <li>ask and answer questions about jobs</li>
+      <li>practise listening to conversations about jobs</li>
+      <li>explain routines and current activities</li>
+    </ul>
+  </div>
+
+  <!-- ═══ VOCABULARY ═══ -->
+  <div class="section-header">VOCABULARY <span class="sub">Talking about jobs</span></div>
+  <p style="font-size:12px;color:#999;margin-bottom:14px;">See Vocabulary reference 1A.</p>
+
+  <!-- EX 1 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">1</div>
+      <div class="ex-text">Complete the phrases with these words.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Ти вивчиш готові сталі вирази (collocations) для опису робочих обов'язків — наприклад, <em>deal with enquiries</em> — які одразу зможеш використовувати в мовленні.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Не користуйся словником одразу! Спочатку спробуй здогадатися за контекстом. Звертай увагу, з якими дієсловами поєднуються іменники — англійську краще вчити цілими блоками, а не окремими словами.</p>
+      </div>
+    </div>
+    <div class="vocab-bank">
+      <span>enquiries</span><span>the fashion industry</span>
+      <span>the minimum wage</span><span>my own company</span>
+      <span>myself</span><span>part-time</span><span>research</span>
+    </div>
+    <ul class="fill-list" id="ex1-list">
+      <li><span class="li-n">1</span><strong>deal with</strong> problems / customers / <input class="ans-input" data-answer="enquiries" placeholder="___________"></li>
+      <li><span class="li-n">2</span><strong>earn</strong> good money / €3,000 a month / <input class="ans-input" data-answer="the minimum wage" placeholder="___________"></li>
+      <li><span class="li-n">3</span><strong>do</strong> essential work / training / <input class="ans-input" data-answer="research" placeholder="___________"></li>
+      <li><span class="li-n">4</span><strong>work for</strong> Microsoft / the government / <input class="ans-input" data-answer="myself" placeholder="___________"></li>
+      <li><span class="li-n">5</span><strong>run</strong> a hotel / a restaurant / <input class="ans-input" data-answer="my own company" placeholder="___________"></li>
+      <li><span class="li-n">6</span><strong>work</strong> hard / late / <input class="ans-input" data-answer="part-time" placeholder="___________"></li>
+      <li><span class="li-n">7</span><strong>work in</strong> IT / education / <input class="ans-input" data-answer="the fashion industry" placeholder="___________"></li>
+    </ul>
+    <button class="check-btn" onclick="checkFillList('ex1-list','ex1-score')">Check ✓</button>
+    <span class="score-msg" id="ex1-score"></span>
+  </div>
+
+  <!-- EX 2 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">2</div>
+      <div class="ex-text"><span class="audio-icon">▶</span> Listen to the answers to Exercise 1 and practise saying them. Which words / phrases do you find hard to say? Practise saying them again.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Тренування вимови та ритму, щоб твоя англійська звучала природно.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Звертай увагу на головний наголос у довгих словах (наприклад, <em>en·QUI·ries</em>, <em>MI·ni·mum</em>) та на те, як слова зливаються між собою (наприклад, <em>work in</em> → звучить як "workin").</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX 3 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">3</div>
+      <div class="ex-text">Work in pairs. Take turns to describe a job. Use at least three phrases from Exercise 1. Your partner tries to guess the job.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Твоя перша спроба перевести нову лексику в активне мовлення.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Напиши собі 2–3 короткі речення-підказки заздалегідь, наприклад: <em>"I work long hours. I deal with people who are ill."</em> → a doctor. Готуючись вдома, ти говоритимеш упевненіше на уроці.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ DEVELOPING CONVERSATIONS ═══ -->
+  <div class="section-header">DEVELOPING CONVERSATIONS</div>
+  <div class="dev-box">
+    <div class="dev-title">Questions about jobs</div>
+    <p>For some common topics, we use fixed question and response phrases. It's helpful to learn the whole phrases to use in conversation and not to worry about how they are formed.</p>
+  </div>
+
+  <!-- EX 4 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">4</div>
+      <div class="ex-text">Match the common questions about work (1–6) with their answers (a–f).</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Ти вивчиш типові питання, якими носії мови підтримують розмову, наприклад <em>What are the hours like?</em> — це не буквальний переклад, а усталений вираз.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Вчи ці питання як готові блоки. Після вправи прочитай усі 6 питань уголос 2 рази — це вже підготовка до вимови у Вправі 5.</p>
+      </div>
+    </div>
+    <div>
+      <div class="match-q-item"><span class="qn">1</span> What do you do? <select class="inline-select" data-answer="c" onchange="checkSelect(this)"><option value="">–</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="match-q-item"><span class="qn">2</span> Where do you work? <select class="inline-select" data-answer="d" onchange="checkSelect(this)"><option value="">–</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="match-q-item"><span class="qn">3</span> How long have you worked there? <select class="inline-select" data-answer="b" onchange="checkSelect(this)"><option value="">–</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="match-q-item"><span class="qn">4</span> Do you enjoy it? <select class="inline-select" data-answer="a" onchange="checkSelect(this)"><option value="">–</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="match-q-item"><span class="qn">5</span> What are the hours like? <select class="inline-select" data-answer="f" onchange="checkSelect(this)"><option value="">–</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+      <div class="match-q-item"><span class="qn">6</span> What are your co-workers like? Do you get on? <select class="inline-select" data-answer="e" onchange="checkSelect(this)"><option value="">–</option><option>a</option><option>b</option><option>c</option><option>d</option><option>e</option><option>f</option></select></div>
+    </div>
+    <div class="match-answers">
+      <div class="match-a-item"><span class="an">a</span>&nbsp; Yeah, it's good. Sometimes it's a bit boring – like any job – but basically it's fine.</div>
+      <div class="match-a-item"><span class="an">b</span>&nbsp; Five years. I did my training after I finished school.</div>
+      <div class="match-a-item"><span class="an">c</span>&nbsp; I'm a police officer.</div>
+      <div class="match-a-item"><span class="an">d</span>&nbsp; In a section in Santiago de Chile.</div>
+      <div class="match-a-item"><span class="an">e</span>&nbsp; Yeah, they're great. We often go out together after work.</div>
+      <div class="match-a-item"><span class="an">f</span>&nbsp; Not great. I often work nights, so it's hard. It makes having a social life difficult.</div>
+    </div>
+  </div>
+
+  <!-- EX 5 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">5</div>
+      <div class="ex-text"><span class="audio-icon">▶</span> Listen to the questions in Exercise 4 and practise saying them.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Ти навчишся правильній інтонації та ритму в питаннях.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Спробуй почути ритм: головні слова (дієслова, іменники) вимовляються чітко і сильно, а допоміжні (як-от <em>do you</em>) "ковтаються" і звучать дуже коротко. Повторюй, зберігаючи той самий ритм.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX 6 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">6</div>
+      <div class="ex-text">Think of a different answer to the questions in Exercise 4. Then work in pairs. Ask and answer the questions.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Ти персоналізуєш матеріал і підготуєшся до реальної розмови про себе.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Напиши власні відповіді на всі 6 питань. Якщо зараз не працюєш — опиши майбутню або омріяну роботу. Ці нотатки знадобляться у Вправі 13!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ LISTENING ═══ -->
+  <div class="section-header">LISTENING</div>
+
+  <!-- EX 7 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">7</div>
+      <div class="ex-text"><span class="audio-icon">▶</span> Listen to two conversations about work. Which questions from Exercise 4 do they ask in each conversation?</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Навичка вихоплювати знайомі ключові фрази у швидкому потоці мовлення.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Перед прослуховуванням швидко перегляни питання 1–6 з Вправи 4. Під час аудіо просто відмічай номери почутих питань — не намагайся запам'ятати все одразу.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX 8 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">8</div>
+      <div class="ex-text"><span class="audio-icon">▶</span> Work in pairs. Are the sentences about Emre (E), Veronika (V) or both (B)? Then listen again and check your answers.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Тренування детального розуміння на слух та вміння робити висновки.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Обов'язково прочитай усі 8 речень <em>до</em> того, як увімкнеш аудіо. Пам'ятай: люди на записі не будуть казати слово в слово те, що написано — вони використовуватимуть синоніми. Аналізуй зміст, а не шукай ідентичні слова.</p>
+      </div>
+    </div>
+    <ul class="evb-list">
+      <li><span class="li-n">1</span><span>I'm not working at the moment.</span><select class="inline-select" data-answer="V" onchange="checkSelect(this)"><option value="">–</option><option>E</option><option>V</option><option>B</option></select></li>
+      <li><span class="li-n">2</span><span>I'm living away from my family.</span><select class="inline-select" data-answer="B" onchange="checkSelect(this)"><option value="">–</option><option>E</option><option>V</option><option>B</option></select></li>
+      <li><span class="li-n">3</span><span>I don't run the business. I just work there.</span><select class="inline-select" data-answer="B" onchange="checkSelect(this)"><option value="">–</option><option>E</option><option>V</option><option>B</option></select></li>
+      <li><span class="li-n">4</span><span>I don't always agree with the people I work with.</span><select class="inline-select" data-answer="V" onchange="checkSelect(this)"><option value="">–</option><option>E</option><option>V</option><option>B</option></select></li>
+      <li><span class="li-n">5</span><span>I'm working on a big project now.</span><select class="inline-select" data-answer="E" onchange="checkSelect(this)"><option value="">–</option><option>E</option><option>V</option><option>B</option></select></li>
+      <li><span class="li-n">6</span><span>I work in the fashion industry.</span><select class="inline-select" data-answer="V" onchange="checkSelect(this)"><option value="">–</option><option>E</option><option>V</option><option>B</option></select></li>
+      <li><span class="li-n">7</span><span>I see my family every month.</span><select class="inline-select" data-answer="E" onchange="checkSelect(this)"><option value="">–</option><option>E</option><option>V</option><option>B</option></select></li>
+      <li><span class="li-n">8</span><span>I like dealing with problems.</span><select class="inline-select" data-answer="E" onchange="checkSelect(this)"><option value="">–</option><option>E</option><option>V</option><option>B</option></select></li>
+    </ul>
+  </div>
+
+  <!-- EX 9 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">9</div>
+      <div class="ex-text">Work in groups. Discuss the questions.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Можливість висловити власну думку та порівняти досвід героїв зі своїм.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Обдумай відповіді вдома і запиши 1–2 речення по кожному питанню. На уроці говоритимеш вільніше, якщо вже думала про це раніше.</p>
+      </div>
+    </div>
+    <ol class="disc-list">
+      <li>Who do you think has the better job – Emre or Veronika? Why?</li>
+      <li>Are any of the sentences in Exercise 8 true for you? Why? / Why not?</li>
+      <li>Do you know anyone who travels a lot because of their job? What do they do? Are they happy?</li>
+      <li>Could you work with people in your family? Why? / Why not?</li>
+    </ol>
+  </div>
+
+  <!-- ═══ GRAMMAR ═══ -->
+  <div class="section-header">GRAMMAR</div>
+
+  <div class="grammar-box">
+    <div class="g-title">Present simple and present continuous</div>
+    <p class="g-note">We generally use two structures to talk about the present – the present simple and the present continuous.</p>
+    <div class="g-sub">Present simple</div>
+    <p>We <strong>have</strong> a couple of clothes shops.</p>
+    <p>I <strong>don't</strong> always <strong>agree</strong> with the people I work with.</p>
+    <p>Where <strong>do</strong> you <strong>work</strong>?</p>
+    <p>He usually <strong>sees</strong> his family every month.</p>
+    <div class="g-sub">Present continuous</div>
+    <p>I'<strong>m doing</strong> an MBA here.</p>
+    <p>I'<strong>m not working</strong> at the moment.</p>
+    <p>Which hotel <strong>are</strong> you <strong>staying</strong> in?</p>
+  </div>
+
+  <!-- EX 10 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">10</div>
+      <div class="ex-text">Work in pairs. Look at the examples in the Grammar box. Which of these rules are about the present simple (PS) and which are about the present continuous (PC)?</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Ти глибше зрозумієш логіку англійської мови, вивівши правило самостійно (inductive approach).</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Уяви часові шкали: Present Simple — постійне або рутина (пряма лінія ——), Present Continuous — тимчасова ситуація (хвиляста лінія ≈≈≈). Дивись на приклади в Grammar box і запитуй себе: <em>"Це постійно, чи тимчасово?"</em></p>
+      </div>
+    </div>
+    <ul class="rule-list">
+      <li><span class="li-n">1</span>It describes temporary, unfinished actions.<select class="inline-select" data-answer="PC" onchange="checkSelect(this)"><option value="">–</option><option>PS</option><option>PC</option></select></li>
+      <li><span class="li-n">2</span>It describes something that is generally true.<select class="inline-select" data-answer="PS" onchange="checkSelect(this)"><option value="">–</option><option>PS</option><option>PC</option></select></li>
+      <li><span class="li-n">3</span>It's often used with time phrases like <em>at the moment</em>, <em>this month</em> and <em>this week</em>.<select class="inline-select" data-answer="PC" onchange="checkSelect(this)"><option value="">–</option><option>PS</option><option>PC</option></select></li>
+      <li><span class="li-n">4</span>It's often used with adverbs like <em>always</em>, <em>usually</em>, <em>sometimes</em> and <em>never</em>.<select class="inline-select" data-answer="PS" onchange="checkSelect(this)"><option value="">–</option><option>PS</option><option>PC</option></select></li>
+      <li><span class="li-n">5</span>The third person singular form ends in an -s.<select class="inline-select" data-answer="PS" onchange="checkSelect(this)"><option value="">–</option><option>PS</option><option>PC</option></select></li>
+      <li><span class="li-n">6</span>Negatives are formed with <em>am / is / are + not + -ing</em>.<select class="inline-select" data-answer="PC" onchange="checkSelect(this)"><option value="">–</option><option>PS</option><option>PC</option></select></li>
+    </ul>
+  </div>
+
+  <!-- EX 11 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">11</div>
+      <div class="ex-text">Complete the pairs of sentences (1–5) with the correct form of the verbs in bold. Use the present simple in one sentence and the present continuous in the other.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Перевірка точності та розуміння різниці між часами на рівні речення.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Коли обираєш форму, завжди запитуй себе: <em>"Ця ситуація тимчасова чи це взагалі завжди так?"</em> Також звертай увагу на маркери: <em>at the moment, usually, always, while</em> — вони підказують правильний час.</p>
+      </div>
+    </div>
+    <div id="ex11-list">
+      <div class="pair-block">
+        <div class="pair-verb">1 &nbsp;run</div>
+        <div class="pair-sentence"><span class="sub-l">a</span>My parents<input class="ans-input" data-answer="run" placeholder="________" style="width:75px">a small family hotel in Kyoto.</div>
+        <div class="pair-sentence"><span class="sub-l">b</span>I<input class="ans-input" data-answer="am running" placeholder="________" style="width:110px">the shop while my boss is on holiday.</div>
+      </div>
+      <div class="pair-block">
+        <div class="pair-verb">2 &nbsp;try</div>
+        <div class="pair-sentence"><span class="sub-l">a</span>As a good businessperson, I always<input class="ans-input" data-answer="try" placeholder="________" style="width:62px">to give my customers what they want.</div>
+        <div class="pair-sentence"><span class="sub-l">b</span>He<input class="ans-input" data-answer="is trying" placeholder="________" style="width:88px">to find work in the TV industry at the moment, but it's very competitive.</div>
+      </div>
+      <div class="pair-block">
+        <div class="pair-verb">3 &nbsp;earn</div>
+        <div class="pair-sentence"><span class="sub-l">a</span>I want to get a new job because I<input class="ans-input" data-answer="am earning" placeholder="________" style="width:110px">the minimum wage at the moment.</div>
+        <div class="pair-sentence"><span class="sub-l">b</span>I want to become a lawyer because they<input class="ans-input" data-answer="earn" placeholder="________" style="width:68px">good money.</div>
+      </div>
+      <div class="pair-block">
+        <div class="pair-verb">4 &nbsp;not deal with</div>
+        <div class="pair-sentence"><span class="sub-l">a</span>I<input class="ans-input" data-answer="don't deal with" placeholder="________" style="width:130px">customers normally, unless we're really busy.</div>
+        <div class="pair-sentence"><span class="sub-l">b</span>I<input class="ans-input" data-answer="am not dealing with" placeholder="________" style="width:158px">that problem right now. I don't have time. Maybe tomorrow.</div>
+      </div>
+      <div class="pair-block">
+        <div class="pair-verb">5 &nbsp;work</div>
+        <div class="pair-sentence"><span class="sub-l">a</span><input class="ans-input" data-answer="Are you working" placeholder="________" style="width:138px">in the office this week or are you at home?</div>
+        <div class="pair-sentence"><span class="sub-l">b</span><input class="ans-input" data-answer="Do you work" placeholder="________" style="width:108px">here? I need to speak to the manager.</div>
+      </div>
+    </div>
+    <button class="check-btn" onclick="checkFillList('ex11-list','ex11-score')">Check ✓</button>
+    <span class="score-msg" id="ex11-score"></span>
+  </div>
+
+  <!-- EX 12 -->
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">12</div>
+      <div class="ex-text">Work in groups. Discuss the questions. Use the present simple and present continuous.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Перехід граматики у живе, активне мовлення про твоє власне життя.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Підготуй відповіді вдома письмово. Спробуй використати обидва часи в одній відповіді, наприклад: <em>"I usually walk to work, but this week I'm taking the bus because my bike is broken."</em></p>
+      </div>
+    </div>
+    <ul class="disc-list">
+      <li>What two or three things are you doing at the moment that are different to your normal habits?
+        <div class="ex-sample">I'm going to the gym to try and get fit for my walking holiday.</div>
+      </li>
+      <li>What are you working on at the moment at school or in your job? Is it interesting?
+        <div class="ex-sample">I'm helping to organize a conference. I'm enjoying it.</div>
+      </li>
+      <li>What do you like about where you live and work? Are there any changes happening?
+        <div class="ex-sample">I can walk to work from my flat. It only takes ten minutes.</div>
+      </li>
+    </ul>
+    <div class="grammar-ref">See Grammar reference 1A.</div>
+  </div>
+
+  <!-- ═══ CONVERSATION PRACTICE ═══ -->
+  <div class="section-header">CONVERSATION PRACTICE</div>
+
+  <div class="exercise">
+    <div class="ex-instruction">
+      <div class="ex-num-badge">13</div>
+      <div class="ex-text">Think about how to answer the questions in Exercise 4 for your own job, or for a job you want to do in the future. Then have conversations with at least two other students in the class.</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn" onclick="toggleHint(this)"><span class="toggle-arrow">▶</span> Мета та підхід</button>
+      <div class="toggle-content">
+        <div class="tc-label">🎯 Ауткам</div>
+        <p>Це головний результат усього уроку! Ти об'єднуєш лексику з Вправи 1, питання з Вправи 4 та граматику у реальну живу розмову.</p>
+        <div class="tc-label">💡 Як підійти</div>
+        <p>Візьми свої нотатки з Вправи 6. Спочатку можеш підглядати, але твоя мета — проговорити відповіді вголос 2–3 рази <em>без</em> підказок. Це тренує плавність (fluency). На уроці ми розігруватимемо діалог так, ніби щойно познайомилися!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SUBMIT ═══ -->
+  <div class="sep"></div>
+  <div class="submit-section">
+    <div class="submit-title">📤 Надіслати відповіді вчителю</div>
+    <p class="submit-desc">Натисни <strong style="color:#f5c800">Підготувати відповіді</strong> — з'явиться зведення з усіма твоїми відповідями. Потім натисни <strong style="color:#f5c800">Копіювати</strong> і надішли в Telegram.</p>
+    <button class="submit-btn" onclick="buildSummary()">Підготувати відповіді</button>
+    <div class="summary-box" id="summary-box" style="display:none">
+      <pre id="summary-text"></pre>
+      <button class="copy-btn" onclick="copyText()">📋 Копіювати</button>
+      <span class="copy-confirm" id="copy-confirm">✓ Скопійовано!</span>
+    </div>
+  </div>
+
+    <div class="page-footer">
+    <span>Unit 1 Jobs</span>
+    <span>8–9</span>
+  </div>
+
+</div>
+
+<script>
+// ── TOGGLE ──
+function toggleHint(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('visible');
+}
+
+// ── NORMALIZE ──
+function normalize(s) {
+  return s.trim().toLowerCase()
+    .replace(/[\u2018\u2019\u02bc']/g, "'")
+    .replace(/\s+/g, ' ');
+}
+
+// ── ACCEPTED ALTERNATES (from Teacher's Book) ──
+// Ex 1: 1 enquiries, 2 the minimum wage, 3 research, 4 myself, 5 my own company, 6 part-time, 7 the fashion industry
+// NB from TB: "work for my own company is possible, but you would be more likely to say work for myself"
+// Ex 11: 1a run / 1b 'm running, 2a try / 2b 's trying, 3a 'm earning / 3b earn,
+//        4a don't deal with / 4b 'm not dealing with, 5a Are you working / 5b Do you work
+function getAlts(ans) {
+  const map = {
+    "enquiries":            ["enquiries"],
+    "the minimum wage":     ["the minimum wage"],
+    "research":             ["research"],
+    "myself":               ["myself", "my own company"],
+    "my own company":       ["my own company", "myself"],
+    "part-time":            ["part-time", "part time"],
+    "the fashion industry": ["the fashion industry"],
+    "run":                  ["run"],
+    "am running":           ["am running", "'m running", "i'm running", "i am running", "'m running"],
+    "try":                  ["try"],
+    "is trying":            ["is trying", "'s trying", "he's trying", "he is trying", "he 's trying"],
+    "am earning":           ["am earning", "'m earning", "i'm earning", "i am earning"],
+    "earn":                 ["earn"],
+    "don't deal with":      ["don't deal with", "do not deal with", "dont deal with"],
+    "am not dealing with":  ["am not dealing with", "'m not dealing with", "i'm not dealing with",
+                             "i am not dealing with", "not dealing with"],
+    "are you working":      ["are you working"],
+    "do you work":          ["do you work"],
+  };
+  return map[ans] || [ans];
+}
+
+// ── CHECK SINGLE INPUT — no answer reveal on error ──
+function checkSingle(inp) {
+  const ans = normalize(inp.dataset.answer);
+  const val = normalize(inp.value);
+  inp.classList.remove('correct', 'incorrect');
+  if (!val) return false;
+  const hit = getAlts(ans).includes(val);
+  inp.classList.add(hit ? 'correct' : 'incorrect');
+  return hit;
+}
+
+// ── LIVE: clear styling while typing ──
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.ans-input').forEach(inp => {
+    inp.addEventListener('blur', () => checkSingle(inp));
+    inp.addEventListener('input', () => inp.classList.remove('correct', 'incorrect'));
+  });
+});
+
+// ── CHECK FILL LIST (Check button) ──
+function checkFillList(listId, scoreId) {
+  const inputs = document.getElementById(listId).querySelectorAll('.ans-input');
+  let correct = 0, answered = 0;
+  inputs.forEach(inp => {
+    if (normalize(inp.value)) { answered++; if (checkSingle(inp)) correct++; }
+  });
+  const el = document.getElementById(scoreId);
+  if (!el) return;
+  if (answered === 0) {
+    el.textContent = 'Заповни відповіді спочатку.';
+    el.style.color = '#999';
+  } else {
+    el.textContent = correct + ' / ' + inputs.length + ' correct';
+    el.style.color = correct === inputs.length ? '#2a9d2a' : '#888';
+  }
+}
+
+// ── CHECK SELECT — no answer reveal, student can retry ──
+// Correct answers from TB:
+// Ex 4: 1c 2d 3b 4a 5f 6e
+// Ex 8: 1V 2E 3V 4V 5E 6V 7E 8V  (from TB: 1V 2B 3B 4V 5E 6V 7E 8E — see below)
+// TB exact: 1V 2B 3B 4V 5E 6V 7E 8E
+// Ex 10: PS: 2,4,5 / PC: 1,3,6
+function checkSelect(sel) {
+  sel.classList.remove('correct', 'incorrect');
+  if (!sel.value) return;
+  sel.classList.add(sel.value === sel.dataset.answer ? 'correct' : 'incorrect');
+}
+
+// ── BUILD SUMMARY ──
+function buildSummary() {
+  const lines = [];
+  lines.push('📚 Unit 1A — What do you do?');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('');
+
+  // Ex 1
+  lines.push('ВПРАВА 1 — Vocabulary');
+  const ex1 = document.getElementById('ex1-list');
+  if (ex1) {
+    ex1.querySelectorAll('li').forEach((li, i) => {
+      const inp = li.querySelector('.ans-input');
+      const val = inp ? (inp.value.trim() || '—') : '—';
+      lines.push('  ' + (i+1) + '. ' + val);
+    });
+  }
+  lines.push('');
+
+  // Ex 4 — matching
+  lines.push('ВПРАВА 4 — Matching (Questions about jobs)');
+  const q4labels = ['What do you do?','Where do you work?','How long have you worked there?','Do you enjoy it?','What are the hours like?','What are your co-workers like?'];
+  let q4idx = 0;
+  document.querySelectorAll('.match-q-item .inline-select').forEach((sel, i) => {
+    const val = sel.value || '—';
+    lines.push('  ' + (i+1) + '. ' + (q4labels[i] || '') + ' → ' + val);
+  });
+  lines.push('');
+
+  // Ex 8 — E/V/B
+  lines.push('ВПРАВА 8 — Emre / Veronika / Both');
+  const ex8sentences = [
+    "I'm not working at the moment.",
+    "I'm living away from my family.",
+    "I don't run the business. I just work there.",
+    "I don't always agree with the people I work with.",
+    "I'm working on a big project now.",
+    "I work in the fashion industry.",
+    "I see my family every month.",
+    "I like dealing with problems."
+  ];
+  document.querySelectorAll('.evb-list .inline-select').forEach((sel, i) => {
+    const val = sel.value || '—';
+    lines.push('  ' + (i+1) + '. ' + (ex8sentences[i] || '') + ' → ' + val);
+  });
+  lines.push('');
+
+  // Ex 10 — PS/PC
+  lines.push('ВПРАВА 10 — Present Simple / Present Continuous');
+  const ex10rules = [
+    'Describes temporary, unfinished actions',
+    'Describes something generally true',
+    'Used with: at the moment / this month / this week',
+    'Used with: always / usually / sometimes / never',
+    'Third person singular ends in -s',
+    'Negatives: am/is/are + not + -ing'
+  ];
+  document.querySelectorAll('.rule-list .inline-select').forEach((sel, i) => {
+    const val = sel.value || '—';
+    lines.push('  ' + (i+1) + '. ' + (ex10rules[i] || '') + ' → ' + val);
+  });
+  lines.push('');
+
+  // Ex 11 — fill-in grammar
+  lines.push('ВПРАВА 11 — Present Simple / Continuous forms');
+  const ex11labels = ['1a (run — general)','1b (run — temporary)','2a (try — general)','2b (try — temporary)','3a (earn — temporary)','3b (earn — general)','4a (not deal with — general)','4b (not deal with — temporary)','5a (work — question temporary)','5b (work — question general)'];
+  const ex11 = document.getElementById('ex11-list');
+  if (ex11) {
+    ex11.querySelectorAll('.ans-input').forEach((inp, i) => {
+      const val = inp.value.trim() || '—';
+      lines.push('  ' + (ex11labels[i] || (i+1)+'.') + ': ' + val);
+    });
+  }
+  lines.push('');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━');
+
+  document.getElementById('summary-text').textContent = lines.join('\n');
+  const box = document.getElementById('summary-box');
+  box.style.display = 'block';
+  box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── COPY TEXT ──
+function copyText() {
+  const text = document.getElementById('summary-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const conf = document.getElementById('copy-confirm');
+    conf.style.display = 'inline';
+    setTimeout(() => { conf.style.display = 'none'; }, 2500);
+  }).catch(() => {
+    // fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const conf = document.getElementById('copy-confirm');
+    conf.style.display = 'inline';
+    setTimeout(() => { conf.style.display = 'none'; }, 2500);
+  });
+}
+
+
+// ── COLLECT ALL ANSWERS ──
+function collectAnswers() {
+  const lines = [];
+  lines.push('📘 Unit 1A — What do you do?');
+  lines.push('');
+
+  // Ex 1
+  lines.push('━━ Exercise 1 ━━');
+  const ex1 = document.getElementById('ex1-list');
+  ex1.querySelectorAll('.ans-input').forEach((inp, i) => {
+    const val = inp.value.trim() || '—';
+    lines.push((i+1) + '. ' + val);
+  });
+  lines.push('');
+
+  // Ex 4 (matching)
+  lines.push('━━ Exercise 4 ━━');
+  const ex4labels = ['What do you do?','Where do you work?','How long have you worked there?','Do you enjoy it?','What are the hours like?','What are your co-workers like? Do you get on?'];
+  const ex4sels = document.querySelectorAll('.match-q-item .inline-select');
+  ex4sels.forEach((sel, i) => {
+    const val = sel.value || '—';
+    lines.push((i+1) + '. ' + ex4labels[i] + ' → ' + val);
+  });
+  lines.push('');
+
+  // Ex 8 (E/V/B)
+  lines.push('━━ Exercise 8 ━━');
+  const ex8sentences = [
+    "I'm not working at the moment.",
+    "I'm living away from my family.",
+    "I don't run the business. I just work there.",
+    "I don't always agree with the people I work with.",
+    "I'm working on a big project now.",
+    "I work in the fashion industry.",
+    "I see my family every month.",
+    "I like dealing with problems."
+  ];
+  const ex8sels = document.querySelectorAll('.evb-list .inline-select');
+  ex8sels.forEach((sel, i) => {
+    const val = sel.value || '—';
+    lines.push((i+1) + '. ' + ex8sentences[i] + ' → ' + val);
+  });
+  lines.push('');
+
+  // Ex 10 (PS/PC)
+  lines.push('━━ Exercise 10 ━━');
+  const ex10rules = [
+    'Describes temporary, unfinished actions.',
+    'Describes something generally true.',
+    'Used with: at the moment, this month...',
+    'Used with: always, usually, sometimes...',
+    'Third person singular ends in -s.',
+    'Negatives: am/is/are + not + -ing.'
+  ];
+  const ex10sels = document.querySelectorAll('.rule-list .inline-select');
+  ex10sels.forEach((sel, i) => {
+    const val = sel.value || '—';
+    lines.push((i+1) + '. ' + ex10rules[i] + ' → ' + val);
+  });
+  lines.push('');
+
+  // Ex 11
+  lines.push('━━ Exercise 11 ━━');
+  const ex11verbs = ['1a (run)', '1b (run)', '2a (try)', '2b (try)', '3a (earn)', '3b (earn)', '4a (not deal with)', '4b (not deal with)', '5a (work)', '5b (work)'];
+  const ex11inputs = document.getElementById('ex11-list').querySelectorAll('.ans-input');
+  ex11inputs.forEach((inp, i) => {
+    const label = ex11verbs[i] || (i+1) + '.';
+    const val = inp.value.trim() || '—';
+    lines.push(label + ': ' + val);
+  });
+
+  const text = lines.join('\n');
+  document.getElementById('submit-textarea').value = text;
+  document.getElementById('submit-wrap').style.display = 'block';
+  document.getElementById('submit-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── COPY TO CLIPBOARD ──
+function copyAnswers() {
+  const ta = document.getElementById('submit-textarea');
+  const btn = document.getElementById('copy-btn');
+  const confirm = document.getElementById('copy-confirm');
+  navigator.clipboard.writeText(ta.value).then(() => {
+    btn.textContent = '✓ Скопійовано!';
+    btn.classList.add('copied');
+    confirm.textContent = 'Тепер надішли в Telegram 📱';
+    setTimeout(() => {
+      btn.textContent = '📋 Копіювати';
+      btn.classList.remove('copied');
+      confirm.textContent = '';
+    }, 3000);
+  }).catch(() => {
+    ta.select();
+    document.execCommand('copy');
+    confirm.textContent = '✓ Скопійовано!';
+    setTimeout(() => confirm.textContent = '', 3000);
+  });
+}
+
+</script>
+</body>
+</html>
